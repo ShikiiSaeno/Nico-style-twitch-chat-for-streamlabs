@@ -10,47 +10,58 @@ document.addEventListener('onEventReceived', function (obj) {
 const log = document.getElementById("log");
 const lineHeight = 80;
 const maxLines = Math.floor(window.innerHeight / lineHeight);
-const lineStatus = new Array(maxLines).fill(false);
+const lineStatus = new Array(maxLines).fill(null); // 各行に表示中の要素を記録（nullなら空き）
 
-// 0行目から順に使用
-function getNextAvailableLine() {
+function canReuseLine(lineIndex, newMsgWidth) {
+    const existing = lineStatus[lineIndex];
+    if (!existing) return true;
+
+    const rect = existing.getBoundingClientRect();
+    return rect.right + 50 < window.innerWidth; // 最低50px空いてたらOK
+}
+
+function findAvailableLine(msgWidth) {
     for (let i = 0; i < maxLines; i++) {
-        if (!lineStatus[i]) return i;
+        if (canReuseLine(i, msgWidth)) {
+            return i;
+        }
     }
-    return null;
+    // すべて重なりそうな場合はランダムに1行選んで被せる
+    return Math.floor(Math.random() * maxLines);
 }
 
 const observer = new MutationObserver((mutationsList) => {
     for (let mutation of mutationsList) {
         for (let node of mutation.addedNodes) {
             const msg = node.nodeType === 1 ? node.querySelector('.message') : null;
-            if (!msg) return;
-            const line = getNextAvailableLine();
+            if (!msg) continue;
 
-            if (line === null) {
-                msg.style.display = 'none';
-                return;
-            }
-
-            const topPos = line * lineHeight;
-            msg.style.top = `${topPos}px`;
             msg.style.position = 'absolute';
+            msg.style.left = '100vw'; // スタート位置を初期化（必要）
 
-            // 距離に応じて速度を上げ、最大10秒に制限
-            const messageWidth = msg.offsetWidth;
+            const msgWidth = msg.offsetWidth;
             const screenWidth = window.innerWidth;
-            const totalDistance = screenWidth + messageWidth;
-            const duration = 5000 / (totalDistance / 2500);
+            const totalDistance = screenWidth + msgWidth;
+            const rawDuration = 5000 / (totalDistance / 2500);
+            const duration = Math.max(2000, rawDuration);
 
-            // アニメーション設定
-            msg.style.animationName = 'none';
-            void msg.offsetHeight; // 再描画
+            // 行を選ぶ（空いてる or 重なってなければ再利用）
+            const line = findAvailableLine(msgWidth);
+            const topPos = line * lineHeight;
+
+            msg.style.top = `${topPos}px`;
+            msg.style.animation = 'none';
+            void msg.offsetHeight;
             msg.style.animation = `slideInLeftToRight ${duration}ms linear forwards`;
 
-            // 行をロック
-            lineStatus[line] = true;
+            // この行に現在のmsgを登録（上書きOK）
+            lineStatus[line] = msg;
+
+            // 削除後にlineStatusを空に戻す
             setTimeout(() => {
-                lineStatus[line] = false;
+                if (lineStatus[line] === msg) {
+                    lineStatus[line] = null;
+                }
             }, duration);
         }
     }
