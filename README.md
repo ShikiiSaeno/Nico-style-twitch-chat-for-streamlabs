@@ -5,11 +5,23 @@
 
 ---
 
+## ⚠️ 注意事項
+
+本プロジェクトは個人によって作成・改造されたものであり、  
+動作の正確性や安全性を保証するものではありません。  
+ご利用に際して発生したいかなる不具合・損害についても、  
+作者は一切の責任を負いかねますので、**ご自身の責任においてご利用ください**。
+
+> This project is provided "as is" without warranty of any kind.  
+> The author is not liable for any issues or damages resulting from use.
+
+---
+
 ## 🪞 元プロジェクトについて
 
 - オリジナル: [Duckator/Nico-style-twitch-chat-for-streamlabs](https://github.com/Duckator/Nico-style-twitch-chat-for-streamlabs)
 - 作者: Duckator(敬称略)
-- ライセンス: オリジナルのGPL-3.0 licenseを継承
+- ライセンス: GPL-3.0 licenseを継承
 
 ---
 
@@ -26,19 +38,19 @@
 
 ## 🔧 特徴
 
-- 自動的に空いている行を割り当てて被りを防止
-- 全行埋まっている場合も強制的に表示（重ねて流す）
-- コメントの長さに応じて自動でスクロール速度調整
-- ユーザー名やバッジも流れるように統合表示
-- CSSアニメーションとJS制御で自然な演出を実現
+- 空いている行に自動で割り当て
+- 全行埋まっている場合は、重ねて強制表示
+- コメントの長さに応じてスクロール速度を調整
+- ユーザー名・バッジも流れるように統合表示
+- CSSアニメーションとJavaScript制御による自然な動作
 
 ---
 
 ## 💬 使い方・詳細
-streamlabs(https://streamlabs.com/)をお使いの上、Chat Boxに下記内容を反映させてください。
-streamlabsについての詳細は省きます。
+[Streamlabs](https://streamlabs.com/) をお使いの上、Chat Box に以下の内容を反映させてください。  
+Streamlabsの基本的な使い方についてはここでは説明を省略します。
 
-フォントサイズを40pxにしてください。
+> **フォントサイズは「40px」** に設定してください。
 
 ### 1. HTML構造
 
@@ -59,16 +71,19 @@ Custom HTML/CSSを以下のように設定する必要があります。
 ```
 
 ### 2. CSS構造
-CSSの内容を全文上書きしてください。
+以下の2つのいずれかを選択して、Chat Box の Custom CSS を全て置き換えてください。
 
 - nicoTwitchChatNoName.css
-コメントに名前を記述しない本来のニコニコ動画感を出したいなら
+-> コメントに名前を表示せず、ニコニコ動画風の無記名チャットにしたい方向け
+
 - nicoTwitchChat.css
-コメントに名前を記述する。配信向け
+-> コメントに名前を表示。配信者が誰の発言か分かるようにしたい方向け
+
+
 
 
 ### 3. JS構造
-nicoTwitchChat.jsの内容を上書きしてください。
+nicoTwitchChat.js の内容をコピーして、Chat Box の JavaScript に貼り付けてください。
+すでに他のイベントリスナーを使用している場合は、内容を手動でマージしてください。
 
-すでにイベントリスナーを使用している場合はご自身でマージしてください。
-その場合、動作保証は出来ないので自己責任でお願いいたします。
+JavaScriptの編集・適用は自己責任で行ってください。
