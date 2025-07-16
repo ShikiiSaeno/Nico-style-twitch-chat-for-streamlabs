@@ -63,9 +63,9 @@ Custom HTML/CSSを以下のように設定する必要があります。
 ### 2. CSS構造
 CSSの内容を全文上書きしてください。
 
-・nicoTwitchChatNoName.css
+- nicoTwitchChatNoName.css
 コメントに名前を記述しない本来のニコニコ動画感を出したいなら
-・nicoTwitchChat.css
+- nicoTwitchChat.css
 コメントに名前を記述する。配信向け
 
 
