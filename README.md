@@ -35,6 +35,13 @@
 ---
 
 ## 💬 使い方・詳細
+フォントサイズを40pxにしてください。
+フォントサイズを変更したい場合、
+```HTML
+const lineHeight = 40;
+```
+をフォントサイズと同じにするか少し大きめに取ってください。
+
 ### 1. HTML構造
 
 Custom HTML/CSSを以下のように設定する必要があります。
@@ -51,10 +58,9 @@ Custom HTML/CSSを以下のように設定する必要があります。
         <span class="message">{message}</span>
     </div>
 </script>
+```
 
-
-
-```CSS
+### 2. CSS構造
 CSSの内容を全文上書きしてください。
 
 ・nicoTwitchChatNoName.css
@@ -63,7 +69,7 @@ CSSの内容を全文上書きしてください。
 コメントに名前を記述する。配信向け
 
 
-```JS
+### 3. JS構造
 nicoTwitchChat.jsの内容を上書きしてください。
 
 すでにイベントリスナーを使用している場合はご自身でマージしてください。
