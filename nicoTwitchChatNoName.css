@@ -90,6 +90,7 @@ body {
 }
 
 .badge {
+    display: none; /* バッジ表示が必要になったらこの行を削除してください */
     margin-right: 0.2em;
     position: relative;
     height: 1em;
@@ -98,5 +99,6 @@ body {
 }
 
 .name {
+    display: none; /* 名前表示が必要になったらこの行を削除してください */
     margin-left: 0.2em;
 }
