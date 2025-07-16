@@ -35,6 +35,9 @@
 ---
 
 ## 💬 使い方・詳細
+streamlabs(https://streamlabs.com/)をお使いの上、Chat Boxに下記内容を反映させてください。
+streamlabsについての詳細は省きます。
+
 フォントサイズを40pxにしてください。
 
 ### 1. HTML構造
