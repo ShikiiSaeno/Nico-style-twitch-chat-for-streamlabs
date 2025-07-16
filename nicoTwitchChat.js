@@ -8,7 +8,7 @@ document.addEventListener('onEventReceived', function (obj) {
   // obj will contain information about the event
 });
 const log = document.getElementById("log");
-const lineHeight = 40;
+const lineHeight = 80;
 const maxLines = Math.floor(window.innerHeight / lineHeight);
 const lineStatus = new Array(maxLines).fill(false);
 
