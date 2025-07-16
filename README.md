@@ -17,7 +17,7 @@
 
 ---
 
-## 🪞 元プロジェクトについて
+##　📄 元プロジェクトについて
 
 - オリジナル: [Duckator/Nico-style-twitch-chat-for-streamlabs](https://github.com/Duckator/Nico-style-twitch-chat-for-streamlabs)
 - 作者: Duckator(敬称略)
